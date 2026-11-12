@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'development/**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    services:
+      neo4j:
+        image: neo4j:5.26-community
+        env:
+          NEO4J_AUTH: neo4j/nexoedu123
+        ports:
+          - 7687:7687
+        options: >-
+          --health-cmd "cypher-shell -u neo4j -p nexoedu123 'RETURN 1'"
+          --health-interval 10s
+          --health-timeout 10s
+          --health-retries 12
+          --health-start-period 30s
+    env:
+      NEO4J_HOST: localhost
+      NEO4J_PORT: "7687"
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: nexoedu123
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Baixar apenas os CSVs da amostra (Git LFS)
+        run: git lfs pull --include='data/sample/**'
+
+      - name: Instalar dependências
+        run: pip install -r requirements-dev.txt
+
+      - name: Validar docker compose
+        run: docker compose config -q
+
+      - name: Aguardar Neo4j aceitar consultas
+        run: |
+          python - <<'PY'
+          import time
+          from neo4j import GraphDatabase
+          for _ in range(60):
+              try:
+                  driver = GraphDatabase.driver('bolt://localhost:7687',
+                                                auth=('neo4j', 'nexoedu123'),
+                                                connection_timeout=5)
+                  driver.verify_connectivity()
+                  driver.close()
+                  break
+              except Exception:
+                  time.sleep(5)
+          else:
+              raise SystemExit('Neo4j não ficou disponível a tempo.')
+          PY
+
+      - name: Testes de unidade
+        run: python -m pytest -q
+
+      - name: Testes de integração e UI
+        env:
+          RUN_INTEGRATION: "1"
+        run: python -m pytest -q

@@ -1,0 +1,8 @@
+.env
+.venv
+.git
+__pycache__
+.pytest_cache
+lpg
+microdados_censo_da_educacao_superior_2024
+output

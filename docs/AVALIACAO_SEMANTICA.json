@@ -1,0 +1,313 @@
+{
+  "methodology": "Cinco consultas de entidade conhecida, sem LLM, amostra fixa. Recall das sementes em top-4; não mede exatidão de respostas, causalidade, ou generalização. Latências incluem aquecimento do modelo e são específicas da máquina.",
+  "metadata": {
+    "nodes_imported": 970,
+    "edges_imported": 3101,
+    "year": 2024,
+    "scope": "amostra",
+    "fingerprint": "343f0536501eb63e9c772c28396dcb5ddc6f3befc4c7ad6efeb04b1511a26c81",
+    "embedding_model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "id": "dataset",
+    "source": "data/sample/lpg",
+    "relacoes": [
+      "CLASSIFICADO_EM",
+      "LOCALIZADA_EM",
+      "MANTIDA_POR",
+      "OFERTADA_POR",
+      "OFERTADO_POR",
+      "OFERTA_DE",
+      "PERTENCE_A_AREA_DETALHADA",
+      "PERTENCE_A_AREA_ESPECIFICA",
+      "PERTENCE_A_AREA_GERAL",
+      "PERTENCE_A_REDE",
+      "PERTENCE_A_REGIAO",
+      "PERTENCE_A_UF",
+      "SEDIADA_EM",
+      "TEM_CATEGORIA_ADMINISTRATIVA",
+      "TEM_DIMENSAO_GEOGRAFICA",
+      "TEM_GRAU_ACADEMICO",
+      "TEM_MODALIDADE_ENSINO",
+      "TEM_NIVEL_ACADEMICO",
+      "TEM_ORGANIZACAO_ACADEMICA"
+    ],
+    "graph": "ensino_2024_amostra",
+    "labels": [
+      "CategoriaAdministrativa",
+      "CineAreaDetalhada",
+      "CineAreaEspecifica",
+      "CineAreaGeral",
+      "CineRotulo",
+      "Curso",
+      "DimensaoGeografica",
+      "GrauAcademico",
+      "IES",
+      "Mantenedora",
+      "ModalidadeEnsino",
+      "Municipio",
+      "NivelAcademico",
+      "OfertaCurso",
+      "OrganizacaoAcademica",
+      "Rede",
+      "Regiao",
+      "UF"
+    ],
+    "status": "pronto"
+  },
+  "results": [
+    {
+      "question": "João Pessoa",
+      "mode": "lexical",
+      "expected": [
+        "2024:municipio_2507507"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2507507",
+        "2024:ies_352",
+        "2024:ies_19956",
+        "2024:ies_339"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.5074,
+      "paths": 240,
+      "nodes": 138
+    },
+    {
+      "question": "João Pessoa",
+      "mode": "vector",
+      "expected": [
+        "2024:municipio_2507507"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2507507",
+        "2024:municipio_4216602",
+        "2024:municipio_2508000",
+        "2024:municipio_2501104"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 1.6122,
+      "paths": 208,
+      "nodes": 142
+    },
+    {
+      "question": "João Pessoa",
+      "mode": "hybrid",
+      "expected": [
+        "2024:municipio_2507507"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2507507",
+        "2024:ies_352",
+        "2024:municipio_4216602",
+        "2024:ies_19956"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2668,
+      "paths": 215,
+      "nodes": 170
+    },
+    {
+      "question": "Universidade Federal da Paraíba",
+      "mode": "lexical",
+      "expected": [
+        "2024:ies_579"
+      ],
+      "retrieved_seed_ids": [
+        "2024:ies_579",
+        "2024:mantenedora_15590",
+        "2024:ies_2564",
+        "2024:mantenedora_14341"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.1803,
+      "paths": 148,
+      "nodes": 82
+    },
+    {
+      "question": "Universidade Federal da Paraíba",
+      "mode": "vector",
+      "expected": [
+        "2024:ies_579"
+      ],
+      "retrieved_seed_ids": [
+        "2024:ies_579",
+        "2024:ies_2564",
+        "2024:uf_53",
+        "2024:ies_550"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2628,
+      "paths": 185,
+      "nodes": 93
+    },
+    {
+      "question": "Universidade Federal da Paraíba",
+      "mode": "hybrid",
+      "expected": [
+        "2024:ies_579"
+      ],
+      "retrieved_seed_ids": [
+        "2024:ies_579",
+        "2024:mantenedora_15590",
+        "2024:ies_2564",
+        "2024:ies_550"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.3019,
+      "paths": 201,
+      "nodes": 88
+    },
+    {
+      "question": "Centro Universitário de João Pessoa",
+      "mode": "lexical",
+      "expected": [
+        "2024:ies_352"
+      ],
+      "retrieved_seed_ids": [
+        "2024:ies_352",
+        "2024:municipio_2507507",
+        "2024:ies_19956",
+        "2024:ies_1075"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.3398,
+      "paths": 240,
+      "nodes": 143
+    },
+    {
+      "question": "Centro Universitário de João Pessoa",
+      "mode": "vector",
+      "expected": [
+        "2024:ies_352"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2507507",
+        "2024:municipio_4216602",
+        "2024:municipio_3550308",
+        "2024:municipio_2501104"
+      ],
+      "entity_recall_at_4": 0.0,
+      "latency_seconds": 0.3622,
+      "paths": 214,
+      "nodes": 193
+    },
+    {
+      "question": "Centro Universitário de João Pessoa",
+      "mode": "hybrid",
+      "expected": [
+        "2024:ies_352"
+      ],
+      "retrieved_seed_ids": [
+        "2024:ies_352",
+        "2024:municipio_2507507",
+        "2024:municipio_4216602",
+        "2024:ies_19956"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.3739,
+      "paths": 215,
+      "nodes": 170
+    },
+    {
+      "question": "Santa Rita",
+      "mode": "lexical",
+      "expected": [
+        "2024:municipio_2513703"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2513703",
+        "2024:municipio_2513406",
+        "2024:uf_42",
+        "2024:municipio_2513802"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2324,
+      "paths": 176,
+      "nodes": 95
+    },
+    {
+      "question": "Santa Rita",
+      "mode": "vector",
+      "expected": [
+        "2024:municipio_2513703"
+      ],
+      "retrieved_seed_ids": [
+        "2024:uf_42",
+        "2024:municipio_2513703",
+        "2024:municipio_2513802",
+        "2024:municipio_2513406"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2697,
+      "paths": 176,
+      "nodes": 95
+    },
+    {
+      "question": "Santa Rita",
+      "mode": "hybrid",
+      "expected": [
+        "2024:municipio_2513703"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2513703",
+        "2024:uf_42",
+        "2024:municipio_2513406",
+        "2024:municipio_2513802"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2271,
+      "paths": 176,
+      "nodes": 95
+    },
+    {
+      "question": "Campina Grande",
+      "mode": "lexical",
+      "expected": [
+        "2024:municipio_2504009"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2504009",
+        "2024:ies_2564",
+        "2024:mantenedora_14341",
+        "2024:ies_3879"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2095,
+      "paths": 187,
+      "nodes": 109
+    },
+    {
+      "question": "Campina Grande",
+      "mode": "vector",
+      "expected": [
+        "2024:municipio_2504009"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2504009",
+        "2024:municipio_5002704",
+        "2024:municipio_2513406",
+        "2024:municipio_5300108"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.1939,
+      "paths": 167,
+      "nodes": 139
+    },
+    {
+      "question": "Campina Grande",
+      "mode": "hybrid",
+      "expected": [
+        "2024:municipio_2504009"
+      ],
+      "retrieved_seed_ids": [
+        "2024:municipio_2504009",
+        "2024:municipio_5002704",
+        "2024:municipio_2500304",
+        "2024:ies_2564"
+      ],
+      "entity_recall_at_4": 1.0,
+      "latency_seconds": 0.2415,
+      "paths": 203,
+      "nodes": 141
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+neo4j==5.28.8
+streamlit==1.66.1
+fastembed==0.9.1
+networkx==3.6.1
+pyvis==0.3.2
+pypdf==6.10.0
+httpx[socks]==0.28.1
+python-dotenv==1.2.4
+pandas==2.2.3
+scipy==1.17.0

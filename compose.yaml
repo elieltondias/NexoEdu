@@ -1,0 +1,47 @@
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-nexoedu123}
+      NEO4J_PLUGINS: '["apoc","graph-data-science"]'
+      NEO4J_server_memory_heap_initial__size: 512M
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512M
+      NEO4J_dbms_transaction_timeout: 120s
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p '${NEO4J_PASSWORD:-nexoedu123}' 'RETURN 1' >/dev/null 2>&1 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+      start_period: 30s
+    restart: unless-stopped
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:8501:8501"
+    environment:
+      NEO4J_HOST: neo4j
+      NEO4J_PORT: "7687"
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD:-nexoedu123}
+      GRAPH_NAME: ${GRAPH_NAME:-ensino_2024_amostra}
+      EMBEDDING_MODE: ${EMBEDDING_MODE:-semantic}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+    volumes:
+      - ./data:/app/data
+      - ./lpg:/app/lpg:ro
+      - embedding_cache:/tmp/fastembed_cache
+    depends_on:
+      neo4j:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  neo4j_data:
+  embedding_cache:

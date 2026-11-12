@@ -1,0 +1,23 @@
+{
+  "executed_at": "2026-11-06",
+  "runner": "streamlit.testing.v1.AppTest (tests/test_app.py)",
+  "environment": "Docker, Python 3.12, neo4j:5.26-community",
+  "tests": 5,
+  "pages_loaded": [
+    "Consultar",
+    "Explorar dados",
+    "Importar",
+    "Sobre o projeto"
+  ],
+  "query_submitted": true,
+  "expected_offers_joao_pessoa": 67,
+  "expected_matriculas_joao_pessoa": "2.039",
+  "explore_filtered_offers": 67,
+  "trace_contains": [
+    "db.index.vector.queryNodes",
+    "db.index.fulltext.queryNodes"
+  ],
+  "sample_import_button_enabled_when_scope_is_sample": true,
+  "connection_error_message": "Não foi possível conectar ao Neo4j...",
+  "exception_count": 0
+}

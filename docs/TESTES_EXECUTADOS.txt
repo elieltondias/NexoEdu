@@ -1,0 +1,57 @@
+Validação executada em 2026-11-06 18:32 — branch development/atendendo-ao-projeto
+Ambiente: Docker (Python 3.12, imagem do projeto) + neo4j:5.26-community + APOC + GDS 2.13.14
+Comando: docker compose run --rm -e RUN_INTEGRATION=1 app python -m pytest -v
+
+============================= test session starts ==============================
+platform linux -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /app
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.16.0
+collecting ... collected 34 items
+
+tests/test_app.py::test_app_loads_without_exception PASSED               [  2%]
+tests/test_app.py::test_explore_page_shows_filtered_metrics PASSED       [  5%]
+tests/test_app.py::test_consultar_page_retrieves_with_traceability PASSED [  8%]
+tests/test_app.py::test_import_page_offers_sample_reingest_when_scope_is_sample PASSED [ 11%]
+tests/test_app.py::test_connection_failure_shows_friendly_error PASSED   [ 14%]
+tests/test_core.py::test_types_preserve_codes_and_missing PASSED         [ 17%]
+tests/test_core.py::test_invalid_boolean_rejected PASSED                 [ 20%]
+tests/test_core.py::test_identifiers_block_cypher_injection PASSED       [ 23%]
+tests/test_core.py::test_normalization_and_embedding_reproducibility PASSED [ 26%]
+tests/test_core.py::test_hash_is_lexical_not_semantic PASSED             [ 29%]
+tests/test_core.py::test_entity_resolution_ambiguous_name_not_merged PASSED [ 32%]
+tests/test_core.py::test_entity_resolution_word_boundaries PASSED        [ 35%]
+tests/test_core.py::test_rrf_combines_ranks_without_raw_score_comparison PASSED [ 38%]
+tests/test_core.py::test_filter_values_are_parameters PASSED             [ 41%]
+tests/test_core.py::test_chunking_has_no_loss_or_empty_chunk PASSED      [ 44%]
+tests/test_core.py::test_louvain_networkx_detects_separate_communities_deterministically PASSED [ 47%]
+tests/test_integration.py::test_real_counts_and_idempotency PASSED       [ 50%]
+tests/test_integration.py::test_hybrid_multi_hop_and_provenance PASSED   [ 52%]
+tests/test_integration.py::test_query_injection_does_not_mutate PASSED   [ 55%]
+tests/test_integration.py::test_constraints_enforced PASSED              [ 58%]
+tests/test_integration.py::test_graph_partition_keeps_same_id_in_isolated_graph PASSED [ 61%]
+tests/test_integration.py::test_documents_mentions_and_text_retrievable PASSED [ 64%]
+tests/test_integration.py::test_scope_or_embedding_mismatch_rejected PASSED [ 67%]
+tests/test_integration.py::test_vector_ranking_by_cosine_similarity PASSED [ 70%]
+tests/test_integration.py::test_louvain_communities_and_shortest_path PASSED [ 73%]
+tests/test_integration.py::test_cypher_sandbox_runs_readonly_and_blocks_writes PASSED [ 76%]
+tests/test_integration.py::test_document_with_llm_ner_and_relation_extraction PASSED [ 79%]
+tests/test_llm.py::test_plan_accepts_only_typed_filters PASSED           [ 82%]
+tests/test_llm.py::test_fabricated_citation_rejected PASSED              [ 85%]
+tests/test_llm.py::test_absent_evidence_abstains_without_call PASSED     [ 88%]
+tests/test_llm.py::test_validate_cypher_allows_reads_and_appends_limit PASSED [ 91%]
+tests/test_llm.py::test_validate_cypher_blocks_writes_and_multi_statement PASSED [ 94%]
+tests/test_llm.py::test_llm_cypher_rejects_write_query PASSED            [ 97%]
+tests/test_llm.py::test_llm_extract_parses_and_shapes PASSED             [100%]/usr/local/lib/python3.12/site-packages/neo4j/_sync/driver.py:547: DeprecationWarning: Relying on Driver's destructor to close the session is deprecated. Please make sure to close the session. Use it as a context (`with` statement) or make sure to call `.close()` explicitly. Future versions of the driver will not close drivers automatically.
+  _deprecation_warn(
+/usr/local/lib/python3.12/site-packages/neo4j/_sync/driver.py:547: DeprecationWarning: Relying on Driver's destructor to close the session is deprecated. Please make sure to close the session. Use it as a context (`with` statement) or make sure to call `.close()` explicitly. Future versions of the driver will not close drivers automatically.
+  _deprecation_warn(
+/usr/local/lib/python3.12/site-packages/neo4j/_sync/driver.py:547: DeprecationWarning: Relying on Driver's destructor to close the session is deprecated. Please make sure to close the session. Use it as a context (`with` statement) or make sure to call `.close()` explicitly. Future versions of the driver will not close drivers automatically.
+  _deprecation_warn(
+/usr/local/lib/python3.12/site-packages/neo4j/_sync/driver.py:547: DeprecationWarning: Relying on Driver's destructor to close the session is deprecated. Please make sure to close the session. Use it as a context (`with` statement) or make sure to call `.close()` explicitly. Future versions of the driver will not close drivers automatically.
+  _deprecation_warn(
+
+
+============================= 34 passed in 14.97s ==============================
